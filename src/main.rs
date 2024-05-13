@@ -2,7 +2,7 @@ use hmac::{Hmac, Mac};
 use nu_plugin::{
     serve_plugin, EngineInterface, EvaluatedCall, MsgPackSerializer, Plugin, SimplePluginCommand,
 };
-use nu_protocol::{Category, LabeledError, Signature, SyntaxShape, Type, Value};
+use nu_protocol::{Category, Example, LabeledError, Signature, SyntaxShape, Type, Value};
 
 struct HmacPlugin;
 
@@ -40,7 +40,15 @@ impl SimplePluginCommand for Sha256 {
         vec!["hmac", "sha", "sha-2", "sha256"]
     }
 
-    // TODO: add examples
+    fn examples(&self) -> Vec<nu_protocol::Example> {
+        vec![Example {
+            example: "\"foobar\" | hmac sha256 \"my_secret\"",
+            description: "seal “foobar” message using “my_secret” key",
+            result: Some(Value::test_string(
+                "c95f4062da9dd9474896abd3a0577f7e4493a09fe033a7393e539481062dca07",
+            )),
+        }]
+    }
 
     // TODO: better error handling
     fn run(
@@ -59,4 +67,10 @@ impl SimplePluginCommand for Sha256 {
         let result = mac.finalize().into_bytes();
         Ok(Value::string(hex::encode(result), call.head))
     }
+}
+
+#[test]
+fn test_examples() -> Result<(), nu_protocol::ShellError> {
+    use nu_plugin_test_support::PluginTest;
+    PluginTest::new("sha256", HmacPlugin.into())?.test_command_examples(&Sha256)
 }
