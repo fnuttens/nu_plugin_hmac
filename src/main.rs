@@ -6,6 +6,7 @@ use nu_protocol::{Category, Example, LabeledError, Signature, SyntaxShape, Type,
 
 struct HmacPlugin;
 
+// TODO: add help for global command (hmac)
 impl Plugin for HmacPlugin {
     fn commands(&self) -> Vec<Box<dyn nu_plugin::PluginCommand<Plugin = Self>>> {
         vec![Box::new(Sha256), Box::new(Sha512)]
@@ -16,6 +17,7 @@ fn main() {
     serve_plugin(&HmacPlugin {}, MsgPackSerializer {});
 }
 
+// TODO: put in own module
 struct Sha256;
 struct Sha512;
 
@@ -51,7 +53,6 @@ impl SimplePluginCommand for Sha256 {
         }]
     }
 
-    // TODO: better error handling
     fn run(
         &self,
         _plugin: &Self::Plugin,
@@ -59,10 +60,11 @@ impl SimplePluginCommand for Sha256 {
         call: &EvaluatedCall,
         input: &Value,
     ) -> Result<Value, LabeledError> {
-        let message = input.as_str().unwrap();
+        let message = input.as_str()?;
         let secret = call.req::<Vec<u8>>(0)?;
 
-        let mut mac = Hmac::<sha2::Sha256>::new_from_slice(&secret).unwrap();
+        let mut mac = Hmac::<sha2::Sha256>::new_from_slice(&secret)
+            .map_err(|_| LabeledError::new("Invalid key length"))?;
         mac.update(message.as_bytes());
 
         let result = mac.finalize().into_bytes();
@@ -102,7 +104,6 @@ impl SimplePluginCommand for Sha512 {
         }]
     }
 
-    // TODO: better error handling
     fn run(
         &self,
         _plugin: &Self::Plugin,
@@ -110,10 +111,11 @@ impl SimplePluginCommand for Sha512 {
         call: &EvaluatedCall,
         input: &Value,
     ) -> Result<Value, LabeledError> {
-        let message = input.as_str().unwrap();
+        let message = input.as_str()?;
         let secret = call.req::<Vec<u8>>(0)?;
 
-        let mut mac = Hmac::<sha2::Sha512>::new_from_slice(&secret).unwrap();
+        let mut mac = Hmac::<sha2::Sha512>::new_from_slice(&secret)
+            .map_err(|_| LabeledError::new("Invalid key length"))?;
         mac.update(message.as_bytes());
 
         let result = mac.finalize().into_bytes();
