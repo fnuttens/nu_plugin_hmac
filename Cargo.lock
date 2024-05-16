@@ -1190,7 +1190,7 @@ dependencies = [
 
 [[package]]
 name = "nu_plugin_hmac"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
  "hex",
  "hmac",
@@ -1198,6 +1198,7 @@ dependencies = [
  "nu-plugin-test-support",
  "nu-protocol",
  "sha2",
+ "whirlpool",
 ]
 
 [[package]]
@@ -2093,6 +2094,15 @@ name = "wasm-bindgen-shared"
 version = "0.2.92"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "af190c94f2773fdb3729c55b007a722abb5384da03bc0986df4c289bf5567e96"
+
+[[package]]
+name = "whirlpool"
+version = "0.10.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f1ae50671d985c15b3214c7d969b8b520759fb3c8682444bec15ef775335a05c"
+dependencies = [
+ "digest",
+]
 
 [[package]]
 name = "winapi"
