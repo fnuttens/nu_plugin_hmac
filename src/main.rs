@@ -6,10 +6,9 @@ use nu_protocol::{Category, Example, LabeledError, Signature, SyntaxShape, Type,
 
 struct HmacPlugin;
 
-// TODO: add help for global command (hmac)
 impl Plugin for HmacPlugin {
     fn commands(&self) -> Vec<Box<dyn nu_plugin::PluginCommand<Plugin = Self>>> {
-        vec![Box::new(Sha256), Box::new(Sha512)]
+        vec![Box::new(Main), Box::new(Sha256), Box::new(Sha512)]
     }
 }
 
@@ -18,8 +17,36 @@ fn main() {
 }
 
 // TODO: put in own module
+struct Main;
 struct Sha256;
 struct Sha512;
+
+impl SimplePluginCommand for Main {
+    type Plugin = HmacPlugin;
+
+    fn name(&self) -> &str {
+        "hmac"
+    }
+
+    fn usage(&self) -> &str {
+        "HMAC commands implementing various hash functions"
+    }
+
+    fn signature(&self) -> Signature {
+        // TODO: choose better category
+        Signature::build(self.name()).category(Category::Experimental)
+    }
+
+    fn run(
+        &self,
+        _plugin: &Self::Plugin,
+        engine: &EngineInterface,
+        call: &EvaluatedCall,
+        _input: &Value,
+    ) -> Result<Value, LabeledError> {
+        Ok(Value::string(engine.get_help()?, call.head))
+    }
+}
 
 impl SimplePluginCommand for Sha256 {
     type Plugin = HmacPlugin;
@@ -34,6 +61,7 @@ impl SimplePluginCommand for Sha256 {
 
     fn signature(&self) -> nu_protocol::Signature {
         Signature::build(self.name())
+            // TODO: choose better category
             .category(Category::Experimental)
             .input_output_type(Type::String, Type::String)
             .required("secret", SyntaxShape::String, "Secret key to use")
@@ -85,6 +113,7 @@ impl SimplePluginCommand for Sha512 {
 
     fn signature(&self) -> nu_protocol::Signature {
         Signature::build(self.name())
+            // TODO: choose better category
             .category(Category::Experimental)
             .input_output_type(Type::String, Type::String)
             .required("secret", SyntaxShape::String, "Secret key to use")
