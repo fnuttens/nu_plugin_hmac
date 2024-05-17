@@ -1,3 +1,6 @@
 # HMAC plugin for Nushell
 
-Requires version 0.93 or later.
+Supported hashing algorithms:
+- SHA-256
+- SHA-512
+- Whirlpool
