@@ -14,6 +14,10 @@ impl Plugin for HmacPlugin {
             Box::new(Whirlpool),
         ]
     }
+
+    fn version(&self) -> String {
+        env!("CARGO_PKG_VERSION").into()
+    }
 }
 
 fn main() {
