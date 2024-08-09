@@ -1,16 +1,16 @@
 [package]
 authors = ["Florent Nuttens"]
 name = "nu_plugin_hmac"
-version = "0.7.0"
+version = "0.8.0"
 edition = "2021"
 
 [dependencies]
 hex = "0.4.3"
 hmac = "0.12.1"
-nu-plugin = "0.95.0"
-nu-protocol = "0.95.0"
+nu-plugin = "0.96.1"
+nu-protocol = "0.96.1"
 sha2 = "0.10.8"
 whirlpool = "0.10.4"
 
 [dev-dependencies]
-nu-plugin-test-support = "0.95.0"
+nu-plugin-test-support = "0.96.1"
