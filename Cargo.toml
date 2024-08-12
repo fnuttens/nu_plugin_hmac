@@ -1,8 +1,11 @@
 [package]
 authors = ["Florent Nuttens"]
+description = "A HMAC sealing plugin for Nushell"
+repository = "https://github.com/fnuttens/nu_plugin_hmac"
 name = "nu_plugin_hmac"
-version = "0.8.0"
+version = "0.8.1"
 edition = "2021"
+license = "MIT"
 
 [dependencies]
 hex = "0.4.3"
