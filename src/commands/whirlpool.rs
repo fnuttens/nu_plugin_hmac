@@ -13,7 +13,7 @@ impl SimplePluginCommand for Whirlpool {
         "hmac whirlpool"
     }
 
-    fn usage(&self) -> &str {
+    fn description(&self) -> &str {
         "HMAC-WHIRLPOOL sealing"
     }
 

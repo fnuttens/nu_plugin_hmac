@@ -13,7 +13,7 @@ impl SimplePluginCommand for Sha512 {
         "hmac sha512"
     }
 
-    fn usage(&self) -> &str {
+    fn description(&self) -> &str {
         "HMAC-SHA512 sealing"
     }
 

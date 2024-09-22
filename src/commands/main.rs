@@ -12,7 +12,7 @@ impl SimplePluginCommand for Main {
         "hmac"
     }
 
-    fn usage(&self) -> &str {
+    fn description(&self) -> &str {
         "HMAC commands implementing various hash functions"
     }
 
