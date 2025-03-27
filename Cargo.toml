@@ -3,7 +3,7 @@ authors = ["Florent Nuttens"]
 description = "A HMAC sealing plugin for Nushell"
 repository = "https://github.com/fnuttens/nu_plugin_hmac"
 name = "nu_plugin_hmac"
-version = "0.14.0"
+version = "0.15.0"
 edition = "2024"
 license = "MIT"
 
