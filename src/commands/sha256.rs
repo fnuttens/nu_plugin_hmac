@@ -19,8 +19,7 @@ impl SimplePluginCommand for Sha256 {
 
     fn signature(&self) -> nu_protocol::Signature {
         Signature::build(self.name())
-            // TODO: choose better category
-            .category(Category::Experimental)
+            .category(Category::Hash)
             .input_output_type(Type::String, Type::String)
             .required("secret", SyntaxShape::String, "Secret key to use")
     }

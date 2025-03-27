@@ -19,7 +19,7 @@ impl SimplePluginCommand for Whirlpool {
 
     fn signature(&self) -> nu_protocol::Signature {
         Signature::build(self.name())
-            .category(Category::Experimental)
+            .category(Category::Hash)
             .input_output_type(Type::String, Type::String)
             .required("secret", SyntaxShape::String, "Secret key to use")
     }

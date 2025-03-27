@@ -17,8 +17,7 @@ impl SimplePluginCommand for Main {
     }
 
     fn signature(&self) -> Signature {
-        // TODO: choose better category
-        Signature::build(self.name()).category(Category::Experimental)
+        Signature::build(self.name()).category(Category::Hash)
     }
 
     fn run(
