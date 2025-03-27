@@ -1,4 +1,4 @@
-use nu_plugin::{serve_plugin, MsgPackSerializer, Plugin};
+use nu_plugin::{MsgPackSerializer, Plugin, serve_plugin};
 
 mod commands;
 use commands::*;

@@ -32,7 +32,9 @@ impl SimplePluginCommand for Whirlpool {
         vec![Example {
             example: "\"foobar\" | hmac whirlpool \"my_secret\"",
             description: "seal “foobar” message using “my_secret” key",
-            result: Some(Value::test_string("280dc5dc3bd6c90caccca01d60d303664439a551002d3dbe53cb32da368118c70fab044775391c4526de0ef7a07f19d97eeca1d84dafd96d5b85e84b22b4e96f")),
+            result: Some(Value::test_string(
+                "280dc5dc3bd6c90caccca01d60d303664439a551002d3dbe53cb32da368118c70fab044775391c4526de0ef7a07f19d97eeca1d84dafd96d5b85e84b22b4e96f",
+            )),
         }]
     }
 
