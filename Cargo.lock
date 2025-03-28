@@ -1017,7 +1017,7 @@ dependencies = [
 
 [[package]]
 name = "nu_plugin_hmac"
-version = "0.15.0"
+version = "0.16.0"
 dependencies = [
  "hex",
  "hmac",
@@ -1070,9 +1070,9 @@ checksum = "80adb31078122c880307e9cdfd4e3361e6545c319f9b9dcafcb03acd3b51a575"
 
 [[package]]
 name = "once_cell"
-version = "1.21.2"
+version = "1.21.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c2806eaa3524762875e21c3dcd057bc4b7bfa01ce4da8d46be1cd43649e1cc6b"
+checksum = "42f5e15c9953c5e4ccceeb2e7382a716482c34515315f7b03532b8b4e8393d2d"
 
 [[package]]
 name = "option-ext"

@@ -20,7 +20,10 @@ impl SimplePluginCommand for Whirlpool {
     fn signature(&self) -> nu_protocol::Signature {
         Signature::build(self.name())
             .category(Category::Hash)
-            .input_output_type(Type::String, Type::String)
+            .input_output_types(vec![
+                (Type::String, Type::String),
+                (Type::Binary, Type::String),
+            ])
             .required("secret", SyntaxShape::String, "Secret key to use")
     }
 
@@ -45,12 +48,12 @@ impl SimplePluginCommand for Whirlpool {
         call: &EvaluatedCall,
         input: &Value,
     ) -> Result<Value, nu_protocol::LabeledError> {
-        let message = input.as_str()?;
+        let message = input.coerce_binary()?;
         let secret = call.req::<Vec<u8>>(0)?;
 
         let mut mac = Hmac::<whirlpool::Whirlpool>::new_from_slice(&secret)
             .map_err(|_| LabeledError::new("Invalid key length"))?;
-        mac.update(message.as_bytes());
+        mac.update(message);
 
         let result = mac.finalize().into_bytes();
         Ok(Value::string(hex::encode(result), call.head))
