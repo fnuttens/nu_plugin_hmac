@@ -3,17 +3,17 @@ authors = ["Florent Nuttens"]
 description = "A HMAC sealing plugin for Nushell"
 repository = "https://github.com/fnuttens/nu_plugin_hmac"
 name = "nu_plugin_hmac"
-version = "0.16.0"
+version = "0.17.0"
 edition = "2024"
 license = "MIT"
 
 [dependencies]
 hex = "0.4.3"
 hmac = "0.12.1"
-nu-plugin = "0.103.0"
-nu-protocol = "0.103.0"
+nu-plugin = "0.104.0"
+nu-protocol = "0.104.0"
 sha2 = "0.10.8"
 whirlpool = "0.10.4"
 
 [dev-dependencies]
-nu-plugin-test-support = "0.103.0"
+nu-plugin-test-support = "0.104.0"
