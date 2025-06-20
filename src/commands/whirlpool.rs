@@ -24,7 +24,11 @@ impl SimplePluginCommand for Whirlpool {
                 (Type::String, Type::String),
                 (Type::Binary, Type::String),
             ])
-            .required("secret", SyntaxShape::String, "Secret key to use")
+            .required(
+                "secret",
+                SyntaxShape::OneOf(vec![SyntaxShape::String, SyntaxShape::Binary]),
+                "Secret key to use",
+            )
     }
 
     fn search_terms(&self) -> Vec<&str> {
