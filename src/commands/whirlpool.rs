@@ -35,7 +35,7 @@ impl SimplePluginCommand for Whirlpool {
         vec!["hmac", "whirlpool"]
     }
 
-    fn examples(&self) -> Vec<nu_protocol::Example> {
+    fn examples(&self) -> Vec<nu_protocol::Example<'_>> {
         vec![Example {
             example: "\"foobar\" | hmac whirlpool \"my_secret\"",
             description: "seal “foobar” message using “my_secret” key",

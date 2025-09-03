@@ -35,7 +35,7 @@ impl SimplePluginCommand for Sha256 {
         vec!["hmac", "sha", "sha-2", "sha256"]
     }
 
-    fn examples(&self) -> Vec<nu_protocol::Example> {
+    fn examples(&self) -> Vec<nu_protocol::Example<'_>> {
         vec![Example {
             example: "\"foobar\" | hmac sha256 \"my_secret\"",
             description: "seal “foobar” message using “my_secret” key",
